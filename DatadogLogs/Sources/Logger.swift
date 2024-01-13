@@ -116,6 +116,12 @@ public struct Logger {
     ///   - core: The instance of Datadog SDK to enable Logs in (global instance by default).
     /// - Returns: A logger instance.
     public static func create(
+        with configuration: Configuration = .init()
+    ) -> LoggerProtocol {
+        create(with: configuration, in: CoreRegistry.default)
+    }
+
+    static func create(
         with configuration: Configuration = .init(),
         in core: DatadogCoreProtocol = CoreRegistry.default
     ) -> LoggerProtocol {

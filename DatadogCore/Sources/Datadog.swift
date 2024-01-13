@@ -348,7 +348,20 @@ public enum Datadog {
     public static func initialize(
         with configuration: Configuration,
         trackingConsent: TrackingConsent,
-        instanceName: String = CoreRegistry.defaultInstanceName
+        instanceName: String? = nil
+    ) -> DatadogCoreProtocol {
+        initialize(
+            with: configuration,
+            trackingConsent: trackingConsent,
+            instanceName: instanceName ?? CoreRegistry.defaultInstanceName
+        )
+    }
+
+    @discardableResult
+    static func initialize(
+        with configuration: Configuration,
+        trackingConsent: TrackingConsent,
+        instanceName: String
     ) -> DatadogCoreProtocol {
         // TODO: RUMM-511 remove this warning
         #if targetEnvironment(macCatalyst)
